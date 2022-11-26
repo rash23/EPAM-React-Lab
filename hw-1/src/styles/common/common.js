@@ -4,13 +4,23 @@ export const StyledButton = styled.button`
 	color: #6a8728;
 	background-color: #fff;
 	font-size: 1em;
-	margin: 1em;
 	padding: 0.25em 1em;
 	border: 2px solid #6a8728;
 	border-radius: 6px;
 	&:hover {
 		background-color: #6a8728;
 		color: #fff;
+	}
+`;
+
+export const StyledInput = styled.input`
+	border: 2px solid orange;
+	padding: 0.25em 1em;
+	border-radius: 6px;
+	width: 100%;
+	font-size: 1em;
+	&:hover {
+		border-color: #6a8728;
 	}
 `;
 
