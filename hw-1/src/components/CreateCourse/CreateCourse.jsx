@@ -17,6 +17,7 @@ import Button from '../../common/Button/Button';
 import Textarea from '../../common/Textarea/Textarea';
 import pipeDurations from '../../helpers/pipeDuration';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const CreateCourse = (props) => {
 	const [authors, setAuthors] = useState([]);
@@ -30,9 +31,11 @@ const CreateCourse = (props) => {
 	const createAuthor = (event) => {
 		event.stopPropagation();
 		const authorObject = {
-			id: Date.now().toString(),
+			id: uuidv4(),
 			name: authorName,
 		};
+		if (authorName === '') return;
+
 		setMockedAuthorsList([...mockedAuthorsList, authorObject]);
 		setAuthorName('');
 	};
@@ -59,15 +62,17 @@ const CreateCourse = (props) => {
 
 	const createCourse = (event) => {
 		event.preventDefault();
-
+		event.stopPropagation();
 		const newCourse = {
-			id: Date.now().toString(),
+			id: uuidv4(),
 			title: title,
 			description: description,
 			creationDate: new Date().toDateString(),
 			duration: +duration,
 			authors: [...authors],
 		};
+
+		console.log(newCourse);
 
 		if (
 			!newCourse.title ||
@@ -84,7 +89,7 @@ const CreateCourse = (props) => {
 	};
 
 	return (
-		<StyledCreateCourse onSubmit={createCourse}>
+		<StyledCreateCourse onSubmit={(event) => createCourse(event)}>
 			<StyledCreateCourseTitle>Title</StyledCreateCourseTitle>
 			<StyledCreateCourseTitleWrapper>
 				<div>
@@ -127,7 +132,11 @@ const CreateCourse = (props) => {
 							/>
 						</StyledCreateCourseWrapper>
 						<StyledCreateCourseButtonWrapper>
-							<Button text='Create author' onClick={createAuthor} />
+							<Button
+								type='button'
+								text='Create author'
+								onClick={(event) => createAuthor(event)}
+							/>
 						</StyledCreateCourseButtonWrapper>
 					</div>
 

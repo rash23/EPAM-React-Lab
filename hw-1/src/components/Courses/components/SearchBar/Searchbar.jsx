@@ -29,7 +29,7 @@ const SearchBar = (props) => {
 	};
 
 	return (
-		<StyledSearchBar onClick={handleSearchClick}>
+		<StyledSearchBar onSubmit={(event) => handleSearchClick(event)}>
 			<Input
 				placeholder={placeholder}
 				value={inputValue}
