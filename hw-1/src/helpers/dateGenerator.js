@@ -1,5 +1,6 @@
 const dateGenerator = (date) => {
 	const creationDate = new Date(date);
+
 	const year = creationDate.getFullYear();
 	let month = creationDate.getMonth() + 1;
 	let day = creationDate.getDate();

@@ -4,16 +4,20 @@ import {
 	StyledCoursesList,
 	StyledCoursesSearchPanel,
 } from '../../styles/components/Courses/courses';
-import { mockedCoursesList, mockedAuthorsList } from '../../constants';
+
 import Button from '../../common/Button/Button';
 import SearchBar from './components/SearchBar/Searchbar';
 import { useState } from 'react';
 
-const Courses = () => {
-	const [coursesList, setCoursesList] = useState(mockedCoursesList);
+const Courses = (props) => {
+	const [coursesList, setCoursesList] = useState(props.mockedCoursesList);
 
 	const filterCourses = (courses) => {
 		setCoursesList(courses);
+	};
+
+	const handleAddCourse = () => {
+		props.setNewCourse(true);
 	};
 
 	return (
@@ -22,10 +26,10 @@ const Courses = () => {
 				<SearchBar
 					placeholder='Enter course name or id'
 					filterData={filterCourses}
-					data={mockedCoursesList}
+					data={props.mockedCoursesList}
 				/>
 				<div>
-					<Button text='Add new course' />
+					<Button text='Add new course' onClick={handleAddCourse} />
 				</div>
 			</StyledCoursesSearchPanel>
 			<StyledCoursesList>
@@ -34,7 +38,7 @@ const Courses = () => {
 						<CourseCard
 							course={course}
 							key={course.id}
-							authorsList={mockedAuthorsList}
+							authorsList={props.mockedAuthorsList}
 						/>
 					))
 				) : (

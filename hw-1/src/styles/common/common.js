@@ -24,6 +24,17 @@ export const StyledInput = styled.input`
 	}
 `;
 
+export const StyledTextarea = styled.textarea`
+	border: 2px solid orange;
+	padding: 0.25em 1em;
+	border-radius: 6px;
+	width: 100%;
+	font-size: 1em;
+	&:hover {
+		border-color: #6a8728;
+	}
+`;
+
 export const LogoWrapper = styled.div`
 	width: 140px;
 	height: 60px;
